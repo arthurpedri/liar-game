@@ -12,6 +12,14 @@ import { Plantas } from "./assets/data/Plantas.js";
 import { Turismo } from "./assets/data/Turismo.js";
 import { Empregos } from "./assets/data/Empregos.js";
 import { Corpo } from "./assets/data/Corpo.js";
+import { Frutas } from "./assets/data/Frutas.js";
+import { Vegetais } from "./assets/data/Vegetais.js";
+import { Hobbies } from "./assets/data/Hobbies.js";
+import { Desastres } from "./assets/data/Desastres.js";
+import { Matérias } from "./assets/data/Matérias.js";
+import { Esportes } from "./assets/data/Esportes.js";
+import { Eletrônicos } from "./assets/data/Eletrônicos.js";
+import { Celebridades } from "./assets/data/Celebridades.js";
 
 const categories = new Map([
   ["Comidas", Comidas],
@@ -21,6 +29,14 @@ const categories = new Map([
   ["Turismo", Turismo],
   ["Empregos", Empregos],
   ["Corpo", Corpo],
+  ["Frutas", Frutas],
+  ["Vegetais", Vegetais],
+  ["Hobbies", Hobbies],
+  ["Desastres", Desastres],
+  ["Matérias", Matérias],
+  ["Esportes", Esportes],
+  ["Eletrônicos", Eletrônicos],
+  ["Celebridades", Celebridades],
 ]);
 
 function Home({ navigation }) {
