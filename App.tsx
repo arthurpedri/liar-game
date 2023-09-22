@@ -5,7 +5,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StatusBar } from "expo-status-bar";
 import { Text, View, TextInput, Pressable, ScrollView } from "react-native";
 import styles from "./styles.js";
-import { Comidas } from "./assets/data/comidas.js";
+import { Comidas } from "./assets/data/Comidas.js";
 
 const categories = new Map([["Comidas", Comidas]]);
 
@@ -60,13 +60,15 @@ function GameConfiguration({ route, navigation }) {
   const [playerCount, setPlayerCount] = useState(3);
   const { category } = route.params;
   const [customWord, setCustomWord] = useState("");
+  const limitPlayers = (count) =>
+    count > 3 ? setPlayerCount(count) : setPlayerCount(3);
   return (
     <View style={styles.containerGameConfig}>
       <Text style={styles.inlineText}>Jogadores: {playerCount}</Text>
 
       <Pressable
         style={styles.buttonInline}
-        onPress={() => setPlayerCount(playerCount - 1)}
+        onPress={() => limitPlayers(playerCount - 1)}
       >
         <Text style={styles.buttonText}>-</Text>
       </Pressable>
@@ -90,6 +92,7 @@ function GameConfiguration({ route, navigation }) {
           navigation.navigate("Game", {
             category: category,
             customWord: "",
+            playerCount: playerCount,
           })
         }
       >
@@ -109,6 +112,7 @@ function GameConfiguration({ route, navigation }) {
           navigation.navigate("Game", {
             category: "Customizado",
             customWord: customWord,
+            playerCount: playerCount,
           })
         }
       >
@@ -154,21 +158,64 @@ function getRandomWord(category: string): string {
 }
 
 function Game({ route, navigation }) {
-  const { category, customWord } = route.params;
-  const word = customWord === "" ? getRandomWord(category) : customWord;
-
+  const { category, customWord, playerCount } = route.params;
+  const [word, setWord] = useState(() =>
+    customWord === "" ? getRandomWord(category) : customWord
+  );
+  const [liarCount, setLiarCount] = useState(
+    () => Math.floor(Math.random() * playerCount + 1) // Starts with 1
+  );
+  const [roundCount, setRoundCount] = useState(1);
+  const [hidden, setHidden] = useState(true);
   return (
     <View style={styles.containerGame}>
       <Text style={styles.title}>{category}</Text>
-      <View>
-        <Text style={styles.title}>{word}</Text>
-      </View>
-      <Pressable
-        style={styles.button}
-        onPress={() => navigation.navigate("Home")}
-      >
-        <Text style={styles.buttonText}>Jogar</Text>
-      </Pressable>
+      {hidden && (
+        <>
+          <Text style={styles.title}>Aperte o botão</Text>
+          <Text style={styles.title}>para ver papel</Text>
+          <Pressable style={styles.button} onPress={() => setHidden(false)}>
+            <Text style={styles.buttonText}>Mostrar</Text>
+          </Pressable>
+        </>
+      )}
+      {!hidden && roundCount !== liarCount && (
+        <>
+          <Text style={styles.title}>A palavra é </Text>
+          <Text style={styles.title}>"{word}"</Text>
+          <Pressable
+            style={styles.button}
+            onPress={() => {
+              setRoundCount(roundCount + 1);
+              setHidden(true);
+              if (roundCount === playerCount) {
+                navigation.navigate("Home");
+              }
+            }}
+          >
+            <Text style={styles.buttonText}>Esconder</Text>
+          </Pressable>
+        </>
+      )}
+      {!hidden && roundCount === liarCount && (
+        <>
+          <Text style={styles.title}>Voce é</Text>
+          <Text style={styles.title}>o Mentiroso</Text>
+          <Pressable
+            style={styles.button}
+            onPress={() => {
+              setRoundCount(roundCount + 1);
+              setHidden(true);
+              if (roundCount === playerCount) {
+                navigation.navigate("Home");
+              }
+            }}
+          >
+            <Text style={styles.buttonText}>Esconder</Text>
+          </Pressable>
+        </>
+      )}
+
       <StatusBar style="auto" />
     </View>
   );
