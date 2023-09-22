@@ -2,14 +2,8 @@ import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StatusBar } from "expo-status-bar";
-import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  Button,
-  Pressable,
-} from "react-native";
+import { Text, View, TextInput, Pressable } from "react-native";
+import styles from "./styles.js";
 
 function Home({ navigation }) {
   return (
@@ -42,7 +36,19 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator
+        initialRouteName="Home"
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: "#aaa",
+          },
+          headerTintColor: "black",
+          headerTitleStyle: {
+            //fontWeight: "bold",
+          },
+          headerTitleAlign: "center",
+        }}
+      >
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen
           name="GameConfiguration"
@@ -53,35 +59,3 @@ export default function App() {
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#aaa",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  title: {
-    fontSize: 50,
-  },
-  description: {
-    fontSize: 20,
-    margin: 30,
-  },
-  button: {
-    alignItems: "center",
-    justifyContent: "center",
-    paddingVertical: 12,
-    paddingHorizontal: 32,
-    borderRadius: 4,
-    elevation: 3,
-    backgroundColor: "black",
-  },
-  buttonText: {
-    fontSize: 16,
-    lineHeight: 21,
-    fontWeight: "bold",
-    letterSpacing: 0.25,
-    color: "white",
-  },
-});
