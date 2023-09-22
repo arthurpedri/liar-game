@@ -9,12 +9,18 @@ import { Comidas } from "./assets/data/Comidas.js";
 import { Animais } from "./assets/data/Animais.js";
 import { Criaturas } from "./assets/data/Criaturas.js";
 import { Plantas } from "./assets/data/Plantas.js";
+import { Turismo } from "./assets/data/Turismo.js";
+import { Empregos } from "./assets/data/Empregos.js";
+import { Corpo } from "./assets/data/Corpo.js";
 
 const categories = new Map([
   ["Comidas", Comidas],
   ["Animais", Animais],
   ["Criaturas", Criaturas],
   ["Plantas", Plantas],
+  ["Turismo", Turismo],
+  ["Empregos", Empregos],
+  ["Corpo", Corpo],
 ]);
 
 function Home({ navigation }) {
