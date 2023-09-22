@@ -6,8 +6,16 @@ import { StatusBar } from "expo-status-bar";
 import { Text, View, TextInput, Pressable, ScrollView } from "react-native";
 import styles from "./styles.js";
 import { Comidas } from "./assets/data/Comidas.js";
+import { Animais } from "./assets/data/Animais.js";
+import { Criaturas } from "./assets/data/Criaturas.js";
+import { Plantas } from "./assets/data/Plantas.js";
 
-const categories = new Map([["Comidas", Comidas]]);
+const categories = new Map([
+  ["Comidas", Comidas],
+  ["Animais", Animais],
+  ["Criaturas", Criaturas],
+  ["Plantas", Plantas],
+]);
 
 function Home({ navigation }) {
   return (
@@ -170,6 +178,8 @@ function Game({ route, navigation }) {
   return (
     <View style={styles.containerGame}>
       <Text style={styles.title}>{category}</Text>
+      <View style={styles.answerContainer}></View>
+
       {hidden && (
         <>
           <Text style={styles.title}>Aperte o botão</Text>
@@ -182,7 +192,9 @@ function Game({ route, navigation }) {
       {!hidden && roundCount !== liarCount && (
         <>
           <Text style={styles.title}>A palavra é </Text>
-          <Text style={styles.title}>"{word}"</Text>
+          <View style={styles.answerContainer}>
+            <Text style={styles.title}>"{word}"</Text>
+          </View>
           <Pressable
             style={styles.button}
             onPress={() => {
@@ -200,7 +212,9 @@ function Game({ route, navigation }) {
       {!hidden && roundCount === liarCount && (
         <>
           <Text style={styles.title}>Voce é</Text>
-          <Text style={styles.title}>o Mentiroso</Text>
+          <View style={styles.answerContainer}>
+            <Text style={styles.title}>o Mentiroso</Text>
+          </View>
           <Pressable
             style={styles.button}
             onPress={() => {
@@ -230,7 +244,7 @@ export default function App() {
         initialRouteName="Home"
         screenOptions={{
           headerStyle: {
-            backgroundColor: "#aaa",
+            backgroundColor: "#ccc",
           },
           headerTintColor: "black",
           headerTitleStyle: {

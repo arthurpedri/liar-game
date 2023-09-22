@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#aaa",
+    backgroundColor: "#ccc",
     alignItems: "center",
     justifyContent: "space-around",
     flexDirection: "row",
@@ -11,11 +11,11 @@ const styles = StyleSheet.create({
   },
   scroll: {
     flex: 1,
-    backgroundColor: "#aaa",
+    backgroundColor: "#ccc",
   },
   containerGameConfig: {
     flex: 1,
-    backgroundColor: "#aaa",
+    backgroundColor: "#ccc",
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "row",
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   },
   containerGame: {
     flex: 1,
-    backgroundColor: "#aaa",
+    backgroundColor: "#ccc",
     alignItems: "center",
     justifyContent: "space-around",
     flexDirection: "column",
@@ -43,6 +43,9 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 50,
+  },
+  answerContainer: {
+    backgroundColor: "#aaa",
   },
   description: {
     fontSize: 18,
