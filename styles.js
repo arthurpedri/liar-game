@@ -9,20 +9,36 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
   },
+  scroll: {
+    flex: 1,
+    backgroundColor: "#aaa",
+  },
   containerGameConfig: {
     flex: 1,
     backgroundColor: "#aaa",
     alignItems: "center",
-    justifyContent: "space-around",
+    justifyContent: "center",
     flexDirection: "row",
     flexWrap: "wrap",
-    paddingTop: 100,
+    alignContent: "center",
+    paddingBottom: 50,
   },
-  scrollContainer: {
+  containerGame: {
     flex: 1,
     backgroundColor: "#aaa",
+    alignItems: "center",
+    justifyContent: "space-around",
+    flexDirection: "column",
+    flexWrap: "wrap",
     alignContent: "center",
-    flexDirection: "row",
+    paddingBottom: 50,
+  },
+  scrollContainer: {
+    // flex: 1,
+    alignContent: "center",
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "column",
     flexWrap: "wrap",
   },
   title: {
@@ -46,6 +62,22 @@ const styles = StyleSheet.create({
     elevation: 3,
     backgroundColor: "black",
   },
+  buttonInlineFix: {
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 4,
+    elevation: 3,
+    backgroundColor: "black",
+    marginTop: 60,
+  },
+  categoryButton: {
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 4,
+    elevation: 3,
+    backgroundColor: "black",
+    marginVertical: 15,
+  },
   buttonInline: {
     alignSelf: "flex-start",
     paddingVertical: 12,
@@ -54,6 +86,7 @@ const styles = StyleSheet.create({
     elevation: 3,
     backgroundColor: "black",
     marginVertical: 38,
+    marginHorizontal: 3,
   },
   buttonText: {
     fontSize: 18,
@@ -62,9 +95,21 @@ const styles = StyleSheet.create({
     letterSpacing: 0.25,
     color: "white",
   },
+  categoryButtonText: {
+    fontSize: 35,
+    lineHeight: 45,
+    letterSpacing: 0.25,
+    color: "white",
+  },
+  textInput: {
+    fontSize: 35,
+    textAlign: "center",
+    paddingBottom: 20,
+  },
   inlineText: {
     fontSize: 35,
-    marginVertical: 30,
+    marginTop: 30,
+    marginBottom: 20,
   },
 });
 
