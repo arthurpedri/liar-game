@@ -45,6 +45,8 @@ const categories = new Map([
   ["Matérias", Matérias],
 ]);
 
+let savedPlayerCount = 3;
+
 function Home({ navigation }) {
   return (
     <View style={styles.container}>
@@ -93,7 +95,7 @@ function Home({ navigation }) {
 }
 
 function GameConfiguration({ route, navigation }) {
-  const [playerCount, setPlayerCount] = useState(3);
+  const [playerCount, setPlayerCount] = useState(savedPlayerCount);
   const { category } = route.params;
   const [customWord, setCustomWord] = useState("");
   const limitPlayers = (count) =>
@@ -195,6 +197,7 @@ function getRandomWord(category: string): string {
 
 function Game({ route, navigation }) {
   const { category, customWord, playerCount } = route.params;
+  savedPlayerCount = playerCount;
   const [word, setWord] = useState(() =>
     customWord === "" ? getRandomWord(category) : customWord
   );
