@@ -98,7 +98,7 @@ function GameConfiguration({ route, navigation }) {
   const [playerCount, setPlayerCount] = useState(savedPlayerCount);
   const { category } = route.params;
   const [customWord, setCustomWord] = useState("");
-  const limitPlayers = (count) =>
+  const limitPlayers = (count: number) =>
     count > 3 ? setPlayerCount(count) : setPlayerCount(3);
   return (
     <View style={styles.containerGameConfig}>
@@ -195,15 +195,17 @@ function getRandomWord(category: string): string {
   return "";
 }
 
+function getLiarCount(playercount: number): number {
+  return Math.floor(Math.random() * playercount + 1); // Starts with 1
+}
+
 function Game({ route, navigation }) {
   const { category, customWord, playerCount } = route.params;
   savedPlayerCount = playerCount;
   const [word, setWord] = useState(() =>
     customWord === "" ? getRandomWord(category) : customWord
   );
-  const [liarCount, setLiarCount] = useState(
-    () => Math.floor(Math.random() * playerCount + 1) // Starts with 1
-  );
+  const [liarCount, setLiarCount] = useState(() => getLiarCount(playerCount));
   const [roundCount, setRoundCount] = useState(1);
   const [hidden, setHidden] = useState(true);
   return (
